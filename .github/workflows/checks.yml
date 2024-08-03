@@ -1,0 +1,76 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  merge_group:
+    branches: [main]
+
+env:
+  BRANCH_NAME: "${{ github.head_ref || github.ref_name }}"
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  checks:
+    name: "Run Automated Checks"
+
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+        node-version: ["20.16.0", "22.5.1"]
+        pnpm-version: ["9.6.0"]
+
+    runs-on: "${{ matrix.os }}"
+
+    steps:
+      # Preparing repository
+      - name: Checkout repository # v4.1.1
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      # Preparing tools
+      - name: Install PNPM # v3.0.0
+        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d
+        with:
+          version: ${{ matrix.pnpm-version }}
+      - name: Use Node.js ${{ matrix.node-version }} # v4.0.2
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      # Preparing dependenies
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Preparing cache
+      - name: "Prepare Turbo Local Cache"
+        id: "cache-turbo"
+        #     actions/cache@v4.0.2 (we use the hash for security reasons)
+        uses: "actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9"
+        with:
+          path: |
+            ./.turbo/cache
+            ./@kindspells/ts-crypto/.tsbuildinfo
+            ./@kindspells/ts-crypto/.turbo
+          key: "cache-turbo-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.pnpm-version}}-${{ hashFiles('.turbo.json') }}-${{ hashFiles('package.json') }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('pkgs/**/*') }}"
+          restore-keys: |
+            cache-turbo-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.pnpm-version}}-${{ hashFiles('.turbo.json') }}-${{ hashFiles('package.json') }}-${{ hashFiles('pnpm-lock.yaml') }}-
+            cache-turbo-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.pnpm-version}}-${{ hashFiles('.turbo.json') }}-${{ hashFiles('package.json') }}-
+            cache-turbo-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.pnpm-version}}-${{ hashFiles('.turbo.json') }}-
+            cache-turbo-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.pnpm-version}}-
+            cache-turbo-${{ matrix.os }}-${{ matrix.node-version }}-
+            cache-turbo-${{ matrix.os }}-
+            cache-turbo-
+
+      # Running checks
+      - name: Run Type Checking
+        run: pnpm turbo typecheck
+      - name: Run Linter
+        run: pnpm turbo lint
+      - name: Run Tests
+        run: pnpm turbo test

@@ -1,0 +1,5 @@
+{
+	"extends": "@kindspells/dev-configs/tsconfig",
+	"include": ["src/**/*"],
+	"exclude": ["dist/**/*", "node_modules/**/*"]
+}

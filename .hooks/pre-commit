@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -eu;
+set -o pipefail;
+
+pnpm turbo typecheck;
+pnpm turbo test;
+pnpm turbo format-staged;

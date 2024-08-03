@@ -1,0 +1,6 @@
+{
+	"extends": ["@kindspells/dev-configs/biome"],
+	"files": {
+		"ignore": [".turbo/**/*", "coverage-unit/**/*", "node_modules/**/*"]
+	}
+}

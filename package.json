@@ -1,0 +1,22 @@
+{
+	"name": "@kindspells/ts-crypto",
+	"private": true,
+	"license": "MIT",
+	"scripts": {
+		"format": "pnpm biome check --write --files-ignore-unknown=true .",
+		"format-staged": "biome-check-staged",
+		"install-githooks": "if [ -d .git ]; then git config core.hooksPath .hooks; fi",
+		"lint": "pnpm biome check --files-ignore-unknown=true ."
+	},
+	"packageManager": "pnpm@9.6.0",
+	"engines": {
+		"node": ">=20.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@kindspells/dev-configs": "workspace:*",
+		"@kindspells/internal-tools": "workspace:*",
+		"turbo": "^2.0.11"
+	},
+	"workspaces": ["./@kindspells/*"]
+}

@@ -1,0 +1,101 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"./package.json",
+				"./rollup.config.mjs",
+				"./tsconfig.json",
+				"./src/**/*"
+			],
+			"outputs": ["./dist/**/*"]
+		},
+		"format": {
+			"dependsOn": ["^format"],
+			"inputs": [
+				"./biome.jsonc",
+				"./**/*.json",
+				"./**/*.jsonc",
+				"./**/*.js",
+				"./**/*.mjs",
+				"./**/*.cjs",
+				"./**/*.ts",
+				"./**/*.mts",
+				"./**/*.cts",
+				"./**/*.d.ts",
+				"./**/*.d.mts",
+				"./**/*.d.cts"
+			],
+			"outputs": [
+				"./**/*.json",
+				"./**/*.jsonc",
+				"./**/*.js",
+				"./**/*.mjs",
+				"./**/*.cjs",
+				"./**/*.ts",
+				"./**/*.mts",
+				"./**/*.cts",
+				"./**/*.d.ts",
+				"./**/*.d.mts",
+				"./**/*.d.cts"
+			]
+		},
+		"format-staged": {
+			"dependsOn": ["^format-staged"],
+			"inputs": [
+				"./biome.jsonc",
+				"./**/*.json",
+				"./**/*.jsonc",
+				"./**/*.js",
+				"./**/*.mjs",
+				"./**/*.cjs",
+				"./**/*.ts",
+				"./**/*.mts",
+				"./**/*.cts",
+				"./**/*.d.ts",
+				"./**/*.d.mts",
+				"./**/*.d.cts"
+			],
+			"outputs": [
+				"./**/*.json",
+				"./**/*.jsonc",
+				"./**/*.js",
+				"./**/*.mjs",
+				"./**/*.cjs",
+				"./**/*.ts",
+				"./**/*.mts",
+				"./**/*.cts",
+				"./**/*.d.ts",
+				"./**/*.d.mts",
+				"./**/*.d.cts"
+			]
+		},
+		"lint": {
+			"dependsOn": ["^lint"],
+			"inputs": [
+				"./biome.jsonc",
+				"./**/*.json",
+				"./**/*.jsonc",
+				"./**/*.js",
+				"./**/*.mjs",
+				"./**/*.cjs",
+				"./**/*.ts",
+				"./**/*.mts",
+				"./**/*.cts",
+				"./**/*.d.ts",
+				"./**/*.d.mts",
+				"./**/*.d.cts"
+			]
+		},
+		"test": {
+			"dependsOn": ["^test"],
+			"inputs": ["./package.json", "./src/**/*"]
+		},
+		"typecheck": {
+			"dependsOn": ["^typecheck"],
+			"inputs": ["./src/**/*", "./tsconfig.json", "./.tsbuildinfo"],
+			"outputs": ["./.tsbuildinfo"]
+		}
+	}
+}

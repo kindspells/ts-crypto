@@ -1,0 +1,21 @@
+{
+	"extends": ["@kindspells/dev-configs/biome"],
+	"overrides": [
+		{
+			"include": ["*.ts", "*.mts", "*.cts", "*.tsx"],
+			"linter": {
+				"rules": {
+					"complexity": { "useLiteralKeys": "off" }
+				}
+			}
+		},
+		{
+			"include": ["rollup.config.mjs", "vitest.config.mts"],
+			"linter": {
+				"rules": {
+					"style": { "noDefaultExport": "off" }
+				}
+			}
+		}
+	]
+}

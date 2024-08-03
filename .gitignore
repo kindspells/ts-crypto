@@ -1,0 +1,22 @@
+# Macos
+.DS_Store
+
+# Vendored Packages
+node_modules/
+
+# Build Artifacts
+.tsbuildinfo
+.turbo/
+dist/
+
+# Tests Coverage
+coverage/
+
+# Local .env files
+.env
+
+# Logs
+*.log
+
+# IDEs
+.idea

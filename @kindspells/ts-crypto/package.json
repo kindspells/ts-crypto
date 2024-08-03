@@ -1,0 +1,20 @@
+{
+	"name": "@kindspells/ts-crypto",
+	"private": false,
+	"version": "0.0.1",
+	"license": "MIT",
+	"scripts": {
+		"format": "pnpm biome check --write --files-ignore-unknown=true .",
+		"format-staged": "biome-check-staged",
+		"lint": "pnpm biome check --files-ignore-unknown=true .",
+		"typecheck": "tsc --incremental true --tsBuildInfoFile .tsbuildinfo --noEmit -p ./tsconfig.json"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@kindspells/dev-configs": "workspace:*",
+		"typescript": "^5.5.4"
+	},
+	"engines": {
+		"node": ">=20.0"
+	}
+}
