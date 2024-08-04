@@ -6,12 +6,12 @@
 		"incremental": true,
 
 		/* Language and Environment */
-		"target": "ES2020",
+		"target": "es2020",
+		"lib": ["es2020", "DOM", "DOM.Iterable"],
 
 		/* Modules */
-		"module": "ES2020",
+		"module": "es2020",
 		"moduleResolution": "Bundler",
-		"baseUrl": "./src/",
 		"allowArbitraryExtensions": true,
 		"allowImportingTsExtensions": true,
 		"resolvePackageJsonExports": true,
@@ -19,8 +19,8 @@
 		"resolveJsonModule": true,
 
 		/* JavaScript Support */
-		"allowJs": true,
-		"checkJs": true,
+		"allowJs": false,
+		"checkJs": false,
 
 		/* Emit */
 		"noEmit": true,
@@ -30,6 +30,10 @@
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
+
+		/* Declarations */
+		"declaration": true,
+		"isolatedDeclarations": true,
 
 		/* Type Checking */
 		"strict": true,

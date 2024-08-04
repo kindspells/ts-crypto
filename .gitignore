@@ -5,6 +5,7 @@
 node_modules/
 
 # Build Artifacts
+.rollup.cache/
 .tsbuildinfo
 .turbo/
 dist/
@@ -20,3 +21,4 @@ coverage/
 
 # IDEs
 .idea
+this.code-workspace
