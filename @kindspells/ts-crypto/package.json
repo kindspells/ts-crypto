@@ -21,7 +21,7 @@
 		"build": "rm -rf dist/* && rollup --config rollup.config.mjs",
 		"format": "pnpm biome check --write --files-ignore-unknown=true .",
 		"format-staged": "biome-check-staged",
-		"lint": "pnpm lint:biome && pnpm lint:publint",
+		"lint": "pnpm lint:biome",
 		"lint:biome": "pnpm biome check --files-ignore-unknown=true .",
 		"lint:publint": "publint",
 		"prepublishOnly": "pnpm lint && pnpm build",

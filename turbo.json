@@ -88,9 +88,18 @@
 				"./**/*.d.cts"
 			]
 		},
+		"lint:publint": {
+			"dependsOn": ["build", "^lint:publint"],
+			"inputs": ["./package.json", "./dist/**/*"]
+		},
 		"test": {
 			"dependsOn": ["^test"],
 			"inputs": ["./package.json", "./src/**/*"]
+		},
+		"test:cov": {
+			"dependsOn": ["^test:cov"],
+			"inputs": ["./package.json", "./src/**/*"],
+			"outputs": ["./coverage/**/*"]
 		},
 		"typecheck": {
 			"dependsOn": ["^typecheck"],

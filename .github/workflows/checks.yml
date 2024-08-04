@@ -73,4 +73,6 @@ jobs:
       - name: Run Linter
         run: pnpm turbo lint
       - name: Run Tests
-        run: pnpm turbo test
+        run: pnpm turbo test:cov
+      - name: Check Package
+        run: pnpm turbo lint:publint
